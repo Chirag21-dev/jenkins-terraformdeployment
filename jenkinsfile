@@ -30,13 +30,15 @@ pipeline {
                
             }}
         }
-        /*stage('Plan') {
+        stage('Plan') {
             steps {
+            withAWS(credentials: 'aws-terraform-cred', region: 'ap-south-1') {
             dir('IAC/Scripts'){
                 sh 'terraform plan -out tfplan'
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             } }
-        }*/
+            }
+        }
 }
 }
 
