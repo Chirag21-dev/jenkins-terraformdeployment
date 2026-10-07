@@ -20,17 +20,23 @@ pipeline {
         }
         stage('Terraform init') {
             steps {
+             withAWS(region: 'ap-south-1') {
                dir('IAC/Scripts'){
-                sh 'terraform init'
+                sh '''
+                        aws sts get-caller-identity
+                        terraform init
+                    '''
+               }
+               
             }}
         }
-        stage('Plan') {
+        /*stage('Plan') {
             steps {
             dir('IAC/Scripts'){
                 sh 'terraform plan -out tfplan'
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             } }
-        }
+        }*/
 }
 }
 
