@@ -20,14 +20,15 @@ pipeline {
         }
         stage('Terraform init') {
             steps {
+               dir('backend'){
                 sh 'terraform init'
-            }
+            }}
         }
         stage('Plan') {
             steps {
+            dir('backend'){
                 sh 'terraform plan -out tfplan'
                 sh 'terraform show -no-color tfplan > tfplan.txt'
-            }
+            } }
         }
-        stage('Apply / Destroy') {
-            steps {
+
