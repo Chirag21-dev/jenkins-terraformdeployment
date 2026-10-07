@@ -41,6 +41,7 @@ pipeline {
         }
        stage('Apply / Destroy') {
             steps {
+               withAWS(credentials: 'aws-terraform-cred', region: 'ap-south-1') {
                 dir('IAC/Scripts'){
                 script {
                     if (params.action == 'apply') {
@@ -60,6 +61,7 @@ pipeline {
 }
 }}
        
+}
 }
 }
 
