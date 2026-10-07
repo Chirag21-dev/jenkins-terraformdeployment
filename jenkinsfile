@@ -20,13 +20,13 @@ pipeline {
         }
         stage('Terraform init') {
             steps {
-               dir('backend'){
+               dir('IAC/Scripts'){
                 sh 'terraform init'
             }}
         }
         stage('Plan') {
             steps {
-            dir('backend'){
+            dir('IAC/Scripts'){
                 sh 'terraform plan -out tfplan'
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             } }
