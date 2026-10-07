@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/jenkins-terraformdeployment.git'
+                git branch: 'main', url: 'https://github.com/Chirag21-dev/jenkins-terraformdeployment.git'
             }
         }
         stage('Terraform init') {
@@ -31,4 +31,6 @@ pipeline {
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             } }
         }
+}
+}
 
