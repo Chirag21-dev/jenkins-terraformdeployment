@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Terraform init') {
             steps {
-             withAWS(region: 'ap-south-1') {
+             withAWS(credentials: 'aws-terraform-cred', region: 'ap-south-1') {
                dir('IAC/Scripts'){
                 sh '''
                         aws sts get-caller-identity
